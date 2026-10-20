@@ -5,14 +5,14 @@
 ## Status
 - Windows: native installable **desktop UI preview v0.1.0** (PySide6 / Qt WebEngine shell around the approved interactive MYTH interface); available via GitHub Releases.
 - Linux/macOS desktop: not yet compiled.
-- Android: **UI preview APK v0.1.2 is now available** (Android 7.0+). New: limited read-only MYTHCHAIN public network reachability check in Perangkat Saya. No actual device pairing, server telemetry, wallet signing, or transactions. Same preview signing certificate; Windows stays v0.1.0.
+- Android: **UI preview APK v0.1.4 is available** (Android 7.0+). Includes read-only network status and verified in-app APK update downloads. Timed update polling has been removed; background event-driven FCM alerts are NOT live until Firebase is configured. No real pairing, server telemetry, wallet signing or transactions. Windows stays v0.1.0.
 - iOS: not built, **no IPA/TestFlight build**.
 
 ## Android preview (sideload APK)
-1. Download `MYTH-Android-UI-Preview-v0.1.2.apk` from [the Android v0.1.2 preview release](https://github.com/annabil-dev/MYTH-app/releases/tag/ui-preview-v0.1.2).
-2. Verify its SHA-256: `e8a1d0b8925665d1f0b09ac8a2d41e34ec4fe71a7a2ae8398558833f661082ac`.
+1. Download `MYTH-Android-UI-Preview-v0.1.4.apk` from [the Android v0.1.4 preview release](https://github.com/annabil-dev/MYTH-app/releases/tag/ui-preview-v0.1.4).
+2. Verify its SHA-256: `e7df0466618fc82decb3e725c143e8ef5d0652927cd68577a15266add2d284aa`.
 3. Open APK using Files/Downloads; allow installation from that source when Android asks, install, and open MYTH. Revoke install-unknown-apps permission afterward if not needed.
-4. App package `io.mythchain.myth.preview`, version `0.1.2-ui-preview`. Android 7.0+ (API24), target SDK35. Requests INTERNET permission for read-only GET to the official public status endpoint; no wallet signing, secrets, tx broadcast or authenticated device monitoring. This preview has a dedicated signing key, not a production wallet key.
+4. App package `io.mythchain.myth.preview`, version `0.1.4-ui-preview`. Android 7.0+ (API24), target SDK35. Requests INTERNET for public read-only chain status, version manifest, and user-initiated verified APK downloads; REQUEST_INSTALL_PACKAGES for system-approved installation and POST_NOTIFICATIONS for future FCM notifications. On newer-version prompt, download and verification happen inside MYTH, installation requires Android user confirmation. Background push delivery is not configured yet; no wallet signing, secrets, broadcast or device pairing. This preview has a dedicated signing key, not a production wallet key.
 
 ## IMPORTANT SECURITY NOTICE
 UI-only sample data. No private key storage, no seed recovery, no RPC wallet signing, no blockchain transaction, no ZYRA Miner pairing, no validator control. Never enter actual passphrases, recovery phrases or financial data into preview.
