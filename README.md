@@ -19,14 +19,14 @@ UI-only sample data. No private key storage, no seed recovery, no RPC wallet sig
 
 This is **NOT** the MYTHCHAIN full-node client. Official MYTHCHAIN **node v0.2.6 remains unchanged**, distributed separately by annabil-dev/ON-CHAIN-VALIDATOR. No v0.2.7 node release is involved.
 
-## Windows desktop preview
-1. Download the ZIP and SHA-256 checksum from [the preview release](https://github.com/annabil-dev/MYTH-app/releases/tag/ui-preview-v0.1.0).
-2. Verify the checksum before extracting.
-3. Extract the entire ZIP, including `_internal`.
-4. Run `MYTH\MYTH.exe`.
-5. Optionally download the PowerShell installer from the same release, review it, and run locally. The installer checks the pinned archive SHA-256, installs to the current user's AppData, and creates a Start Menu shortcut; no admin rights needed.
+## Windows desktop preview — graphical setup installer
+**Recommended for new users:** Download `MYTH-Setup-Windows-UI-Preview-v0.1.0.exe` from [the official preview release](https://github.com/annabil-dev/MYTH-app/releases/tag/ui-preview-v0.1.0), verify its optional SHA-256 checksum, then double-click to start the Windows installer wizard. Choose the install location, optionally add a desktop shortcut, and click Install. The small Setup.exe downloads the official 218 MB portable ZIP over HTTPS and verifies a pinned checksum before extracting it. For offline use, put the verified official ZIP in the same folder as Setup.exe. Start MYTH from the Start Menu or uninstall from Windows Installed Apps. It installs only for the current user and does not need administrator rights.
 
-Windows SmartScreen might warn because this experimental preview is not code-signed. There is no auto-update mechanism in this prototype. Do not install it on a machine where you cannot evaluate these risks.
+SHA-256 of small online Setup.exe: `9c32acc33521bfa1d5da24107ed81d408ce64c345f618e71124d56a52a093588`. Internet is necessary during setup unless the matching official release ZIP is placed beside Setup.exe; Qt/WebEngine files are validated and extracted automatically.
+
+**Alternative:** Download `MYTH-Desktop-Windows-UI-Preview-v0.1.0.zip`, verify its checksum, extract the whole folder including `_internal`, then launch `MYTH\MYTH.exe`. The PowerShell installer is also provided as an optional legacy alternative.
+
+This UI-only experimental preview is not signed with a trusted Windows code-signing certificate. Windows SmartScreen may show an Unverified Publisher warning. There is no auto-update mechanism in this prototype; only use the project's release links.
 
 ## Website
 Official documentation and supported download status: https://mythchain.pages.dev/docs/wallet
