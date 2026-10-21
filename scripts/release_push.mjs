@@ -165,7 +165,11 @@ async function main(){
   const published=await resolvePublishedAsset(event,process.env.GITHUB_TOKEN);
   if(!parseReleaseEvent(published))
     throw Error('Android release APK or SHA-256 digest not ready');
-  const account=JSON.parse(raw);
+  // JSON.parse errors include the beginning of the input, which may contain
+  // secret material. Never emit the original parse error to Actions logs.
+  let account;
+  try { account=JSON.parse(raw); }
+  catch { throw Error('MYTH_FCM_SERVICE_ACCOUNT_JSON must be a complete service-account JSON file in GitHub Secrets'); }
   const response=await sendReleasePush(published,account);
   console.log(response.sent ? 'FCM accepted notification for '+response.versionName : 'Skipped');
 }
