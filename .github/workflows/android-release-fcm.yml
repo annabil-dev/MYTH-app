@@ -1,0 +1,33 @@
+name: MYTH Android release push (FCM)
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: myth-android-release-fcm-${{ github.event.release.id }}
+  cancel-in-progress: false
+
+jobs:
+  push:
+    name: Validate release and dispatch FCM
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate event parser, push schema and signing in isolation
+        run: node --test scripts/release_push.test.mjs
+      - name: Notify Android subscribers when a verified APK is published
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          MYTH_FCM_SERVICE_ACCOUNT_JSON: ${{ secrets.MYTH_FCM_SERVICE_ACCOUNT_JSON }}
+        run: node scripts/release_push.mjs
